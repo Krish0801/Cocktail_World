@@ -8,7 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.cocktailworld.databinding.FragmentAlcoholicBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AlcoholicFragment : Fragment() {
 
     private var _binding: FragmentAlcoholicBinding? = null
@@ -29,8 +31,8 @@ class AlcoholicFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.textDashboard
-        alcoholicViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        alcoholicViewModel.alcoholic.observe(viewLifecycleOwner) {
+            textView.text = it.toString()
         }
         return root
     }

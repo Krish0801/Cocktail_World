@@ -8,6 +8,8 @@ import com.example.cocktailworld.data.LoginRepository
 import com.example.cocktailworld.data.Result
 
 import com.example.cocktailworld.R
+import dagger.hilt.android.lifecycle.HiltViewModel
+
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 

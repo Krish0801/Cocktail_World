@@ -1,4 +1,4 @@
-package com.example.cocktailworld
+package com.example.cocktailworld.ui
 
 import android.os.Bundle
 import android.view.Menu
@@ -12,10 +12,13 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.cocktailworld.R
 import com.example.cocktailworld.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -66,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId==R.id.action_signOut){
+        if (item.itemId== R.id.action_signOut){
             FirebaseAuth.getInstance().signOut();
             navController.navigate(R.id.navigation_login)
             Toast.makeText(this, "Logged Out Successfully",

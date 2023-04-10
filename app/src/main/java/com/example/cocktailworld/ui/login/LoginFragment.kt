@@ -31,6 +31,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.ktx.messaging
+import dagger.hilt.android.AndroidEntryPoint
+
 
 class LoginFragment : Fragment() {
     private val TAG: String = "LoginFragment"
