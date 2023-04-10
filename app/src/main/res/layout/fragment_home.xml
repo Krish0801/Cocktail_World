@@ -15,7 +15,23 @@
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/cocktail_orange"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="239dp"
+        android:layout_height="195dp"
+        android:layout_marginStart="86dp"
+        android:layout_marginTop="102dp"
+        android:layout_marginEnd="86dp"
+        android:layout_marginBottom="59dp"
+        android:src="@mipmap/ic_launcher_cocktail_foreground"
+        app:layout_constraintBottom_toTopOf="@+id/text_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

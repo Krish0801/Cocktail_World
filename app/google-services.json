@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1074829379817-j1fdulk7kmc7fujla1a0t2m06esnh9au.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cocktailworld",
+            "certificate_hash": "d1f31927c634ef053634d70d356c89138f204f76"
+          }
+        },
+        {
           "client_id": "1074829379817-ic9on7ihj8keq9dhvcu14437jakdsbr9.apps.googleusercontent.com",
           "client_type": 3
         }
