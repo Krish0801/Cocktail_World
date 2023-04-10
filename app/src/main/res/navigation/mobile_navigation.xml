@@ -31,4 +31,9 @@
             android:id="@+id/action_navigation_login_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
+    <fragment
+        android:id="@+id/alcoholicDetailFragment"
+        android:name="com.example.cocktailworld.AlcoholicDetailFragment"
+        android:label="fragment_alcoholic_detail"
+        tools:layout="@layout/fragment_alcoholic_detail" />
 </navigation>
