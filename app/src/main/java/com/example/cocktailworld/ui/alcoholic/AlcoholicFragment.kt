@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cocktailworld.R
+import com.example.cocktailworld.data.model.drinks.AllDrinks
+import com.example.cocktailworld.data.model.drinks.Drink
 import com.example.cocktailworld.databinding.FragmentAlcoholicBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -14,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class AlcoholicFragment : Fragment() {
 
     private var _binding: FragmentAlcoholicBinding? = null
+    private lateinit var viewModel: AlcoholicViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,21 +29,35 @@ class AlcoholicFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val alcoholicViewModel =
-            ViewModelProvider(this).get(AlcoholicViewModel::class.java)
-
+        viewModel =
+            ViewModelProvider(this)[AlcoholicViewModel::class.java]
         _binding = FragmentAlcoholicBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        alcoholicViewModel.alcoholic.observe(viewLifecycleOwner) {
-            textView.text = it.toString()
+        viewModel.alcoholic.observe(viewLifecycleOwner) {
+            it?.let {
+                setupUI(it)
+            }
         }
-        return root
+
+        viewModel.getAlcoholic()
+
+        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun setupUI(alcoholic: AllDrinks) {
+        val alcoholicAdapter = AlcoholicAdapter(alcoholic.drinks as List<Drink>?)
+        binding.rvAlcoholic.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = alcoholicAdapter
+        }
+        alcoholicAdapter.onItemClick = {
+            val bundle = Bundle().apply {
+                putSerializable("AlcoholicItem", it)
+            }
+//            findNavController().navigate(
+//                R.id.action_navigation_artworks_to_navigation_artworksDetails, bundle
+//            )
+        }
+
     }
 }

@@ -30,10 +30,10 @@ class NonAlcoholicFragment : Fragment() {
         _binding = FragmentNonAlcoholicBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        nonAlcoholicViewModel.nonAlcoholic.observe(viewLifecycleOwner) {
-            textView.text = it.toString()
-        }
+//        val textView: TextView = binding.textNotifications
+//        nonAlcoholicViewModel.nonAlcoholic.observe(viewLifecycleOwner) {
+//            textView.text = it.toString()
+//        }
         return root
     }
 

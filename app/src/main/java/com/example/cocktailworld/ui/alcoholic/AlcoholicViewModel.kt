@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.cocktailworld.data.model.drinks.AllDrinks
 import com.example.cocktailworld.data.model.drinks.Drink
 import com.example.cocktailworld.data.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +16,7 @@ class AlcoholicViewModel @Inject constructor(
     val repository: Repository
 ) : ViewModel() {
 
-    val alcoholic = MutableLiveData<Drink>()
+    val alcoholic = MutableLiveData<AllDrinks>()
         fun getAlcoholic() {
 
             viewModelScope.launch {

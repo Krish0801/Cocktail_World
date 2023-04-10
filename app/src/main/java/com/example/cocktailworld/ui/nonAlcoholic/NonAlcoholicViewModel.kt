@@ -18,10 +18,10 @@ class NonAlcoholicViewModel @Inject constructor(
     val nonAlcoholic = MutableLiveData<Drink>()
     fun getNonAlcoholic() {
 
-        viewModelScope.launch {
-            val result = repository.getNonAlcoholic()
-            nonAlcoholic.postValue(result)
-        }
+//        viewModelScope.launch {
+//            val result = repository.getNonAlcoholic()
+//            nonAlcoholic.postValue(result)
+//        }
 
     }
 }

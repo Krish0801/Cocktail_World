@@ -1,10 +1,10 @@
 package com.example.cocktailworld.data.repository
 
-import com.example.cocktailworld.data.model.drinks.Drink
+import com.example.cocktailworld.data.model.drinks.AllDrinks
 
 interface Repository {
 
-    suspend fun getAlcoholic(): Drink
+    suspend fun getAlcoholic(): AllDrinks
 
-    suspend fun getNonAlcoholic(): Drink
+    suspend fun getNonAlcoholic(): AllDrinks
 }
