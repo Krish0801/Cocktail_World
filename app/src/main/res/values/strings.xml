@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Cocktail World</string>
+    <string name="title_home">Home</string>
+    <string name="title_alcoholic">Alcoholic</string>
+    <string name="title_non_alcoholic">Non-Alcoholic</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >8 characters which includes number,special character and one upper case.</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="login">Login</string>
+    <string name="shr_hint_username">Username</string>
+    <string name="shr_hint_password">Password</string>
+    <string name="title_login">Login</string>
+    <string name="action_sign_out">Sign Out</string>
+</resources>

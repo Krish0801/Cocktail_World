@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_alcoholic"
+        android:icon="@drawable/liquor_fill0_wght400_grad0_opsz48"
+        android:title="@string/title_alcoholic" />
+
+    <item
+        android:id="@+id/navigation_non_alcoholic"
+        android:icon="@drawable/local_bar_fill0_wght400_grad0_opsz48"
+        android:title="@string/title_non_alcoholic" />
+
+</menu>

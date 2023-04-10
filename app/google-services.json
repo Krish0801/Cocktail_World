@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1074829379817",
+    "project_id": "cocktail-world",
+    "storage_bucket": "cocktail-world.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074829379817:android:c336ec0ac3c1515c2a8878",
+        "android_client_info": {
+          "package_name": "com.example.cocktailworld"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1074829379817-ic9on7ihj8keq9dhvcu14437jakdsbr9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmKoEKfLOaoY4bRV8OG6J42fAhyNu8KIY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1074829379817-3a1k5a2o37j2aoulpp70g1egmh5d0fm0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
