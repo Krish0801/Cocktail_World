@@ -1,10 +1,7 @@
 package com.example.cocktailworld.ui.login
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.annotation.StringRes
-import androidx.fragment.app.Fragment
+import android.app.Activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,25 +10,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.cocktailworld.databinding.FragmentLoginBinding
-
 import com.example.cocktailworld.R
+import com.example.cocktailworld.databinding.FragmentLoginBinding
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.FacebookSdk
+import com.facebook.FacebookSdk.getApplicationContext
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.ktx.messaging
-import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 
 class LoginFragment : Fragment() {
@@ -40,6 +48,10 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private lateinit var auth: FirebaseAuth
     private lateinit var analytics: FirebaseAnalytics
+    private lateinit var googleSignInClient : GoogleSignInClient
+
+
+
 
 
     // This property is only valid between onCreateView and
@@ -70,12 +82,13 @@ class LoginFragment : Fragment() {
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
 
+        FacebookSdk.sdkInitialize(getApplicationContext())
         auth = Firebase.auth
         analytics = Firebase.analytics
 
         val usernameEditText = binding.username
         val passwordEditText = binding.password
-        val loginButton = binding.btnLogin
+        var loginButton = binding.btnLogin
         val loadingProgressBar = binding.loading
 
         Firebase.messaging.getToken().addOnCompleteListener(OnCompleteListener { task ->
@@ -90,7 +103,7 @@ class LoginFragment : Fragment() {
             // Log and toast
             //val msg = getString(R.string.msg_token_fmt, token)
             Log.d("FirebaseTokenNotifications", token)
-            Toast.makeText(requireContext(), "Recieved $token", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireContext(), "Recieved $token", Toast.LENGTH_SHORT).show()
         })
         // [END log_reg_token]
 
@@ -179,6 +192,81 @@ class LoginFragment : Fragment() {
             )
             )
         }
+
+
+        val EMAIL = "email"
+
+       // loginButton = findViewById(com.example.cocktailworld.R.id.login_button) as LoginButton
+        binding.loginButton.setReadPermissions(Arrays.asList(EMAIL))
+        // If you are using in a fragment, call loginButton.setFragment(this);
+
+        // Callback registration
+        // If you are using in a fragment, call loginButton.setFragment(this);
+
+        // Callback registration
+        val callbackManager = CallbackManager.Factory.create();
+        binding.loginButton.registerCallback(callbackManager, object : FacebookCallback<com.facebook.login.LoginResult>{
+            override fun onCancel() {
+                TODO("Not yet implemented")
+            }
+
+            override fun onError(error: FacebookException) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onSuccess(result: com.facebook.login.LoginResult) {
+                findNavController().navigate(R.id.action_navigation_login_to_navigation_home)
+            }
+        })
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(requireActivity() , gso)
+
+
+        binding.googleLoginButton?.setOnClickListener {
+            signInGoogle()
+        }
+
+    }
+    private fun signInGoogle(){
+        val signInIntent = googleSignInClient.signInIntent
+        launcher.launch(signInIntent)
+    }
+
+    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            result ->
+        if (result.resultCode == Activity.RESULT_OK){
+
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            handleResults(task)
+        }
+    }
+
+    private fun handleResults(task: Task<GoogleSignInAccount>) {
+        if (task.isSuccessful){
+            val account : GoogleSignInAccount? = task.result
+            if (account != null){
+                updateUI(account)
+            }
+        }else{
+            Toast.makeText(context, task.exception.toString() , Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun updateUI(account: GoogleSignInAccount) {
+        val credential = GoogleAuthProvider.getCredential(account.idToken , null)
+        auth.signInWithCredential(credential).addOnCompleteListener {
+            if (it.isSuccessful){
+                findNavController().navigate(R.id.action_navigation_login_to_navigation_home)
+            }else{
+                Toast.makeText(context, it.exception.toString() , Toast.LENGTH_SHORT).show()
+
+            }
+        }
     }
 
     private fun signupUser(usernameEditText: String, passwordEditText: String) {
@@ -233,7 +321,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome) + model.displayName
+        val welcome = getString(com.example.cocktailworld.R.string.welcome) + model.displayName
         // TODO : initiate successful logged in experience
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()

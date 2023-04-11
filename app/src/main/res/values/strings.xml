@@ -23,4 +23,11 @@
     <string name="heading_type">Type</string>
     <string name="heading_glassType">Glass Type</string>
     <string name="heading_instructions">Instructions</string>
+
+
+    <string name="facebook_app_id1">254875573630352</string>
+    <string name="fb_login_protocol_scheme">fb254875573630352</string>
+    <string name="facebook_client_token">94f121f57775832765e4beae1611affe</string>
+
+
 </resources>
