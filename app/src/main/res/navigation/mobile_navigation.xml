@@ -15,13 +15,21 @@
         android:id="@+id/navigation_alcoholic"
         android:name="com.example.cocktailworld.ui.alcoholic.AlcoholicFragment"
         android:label="@string/title_alcoholic"
-        tools:layout="@layout/fragment_alcoholic" />
+        tools:layout="@layout/fragment_alcoholic" >
+        <action
+            android:id="@+id/action_navigation_alcoholic_to_alcoholicDetailFragment"
+            app:destination="@id/alcoholicDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_non_alcoholic"
         android:name="com.example.cocktailworld.ui.nonAlcoholic.NonAlcoholicFragment"
         android:label="@string/title_non_alcoholic"
-        tools:layout="@layout/fragment_non_alcoholic" />
+        tools:layout="@layout/fragment_non_alcoholic" >
+        <action
+            android:id="@+id/action_navigation_non_alcoholic_to_nonAlcoholicDetailFragment"
+            app:destination="@id/nonAlcoholicDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_login"
         android:name="com.example.cocktailworld.ui.login.LoginFragment"
@@ -33,7 +41,12 @@
     </fragment>
     <fragment
         android:id="@+id/alcoholicDetailFragment"
-        android:name="com.example.cocktailworld.AlcoholicDetailFragment"
+        android:name="com.example.cocktailworld.ui.alcoholicDetail.AlcoholicDetailFragment"
         android:label="fragment_alcoholic_detail"
         tools:layout="@layout/fragment_alcoholic_detail" />
+    <fragment
+        android:id="@+id/nonAlcoholicDetailFragment"
+        android:name="com.example.cocktailworld.ui.nonAlcoholicDetail.NonAlcoholicDetailFragment"
+        android:label="fragment_non_alcoholic_detail"
+        tools:layout="@layout/fragment_non_alcoholic_detail" />
 </navigation>

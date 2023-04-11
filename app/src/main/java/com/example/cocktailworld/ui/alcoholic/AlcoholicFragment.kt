@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cocktailworld.R
 import com.example.cocktailworld.data.model.drinks.AllDrinks
 import com.example.cocktailworld.data.model.drinks.Drink
+import com.example.cocktailworld.data.model.id.Id
 import com.example.cocktailworld.databinding.FragmentAlcoholicBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -54,9 +55,9 @@ class AlcoholicFragment : Fragment() {
             val bundle = Bundle().apply {
                 putSerializable("AlcoholicItem", it)
             }
-//            findNavController().navigate(
-//                R.id.action_navigation_artworks_to_navigation_artworksDetails, bundle
-//            )
+            findNavController().navigate(
+                R.id.action_navigation_alcoholic_to_alcoholicDetailFragment, bundle
+            )
         }
 
     }

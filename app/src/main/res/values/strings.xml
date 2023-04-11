@@ -17,4 +17,10 @@
     <string name="shr_hint_password">Password</string>
     <string name="title_login">Login</string>
     <string name="action_sign_out">Sign Out</string>
+    <string name="heading_id">ID</string>
+    <string name="heading_name">Name</string>
+    <string name="heading_category">Category</string>
+    <string name="heading_type">Type</string>
+    <string name="heading_glassType">Glass Type</string>
+    <string name="heading_instructions">Instructions</string>
 </resources>

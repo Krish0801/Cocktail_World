@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cocktailworld.R
 import com.example.cocktailworld.data.model.drinks.AllDrinks
 import com.example.cocktailworld.data.model.drinks.Drink
 import com.example.cocktailworld.databinding.FragmentNonAlcoholicBinding
-import com.example.cocktailworld.ui.alcoholic.AlcoholicAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -53,9 +54,9 @@ class NonAlcoholicFragment : Fragment() {
             val bundle = Bundle().apply {
                 putSerializable("NonAlcoholicItem", it)
             }
-//            findNavController().navigate(
-//                R.id.action_navigation_artworks_to_navigation_artworksDetails, bundle
-//            )
+            findNavController().navigate(
+                R.id.action_navigation_non_alcoholic_to_nonAlcoholicDetailFragment, bundle
+            )
         }
 
     }
